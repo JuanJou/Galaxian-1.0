@@ -13,8 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import Juego.*;
+import javax.swing.JSplitPane;
+import javax.swing.JButton;
+import javax.swing.JMenuBar;
 
-public class Grafica {
+public class Grafica{
 	private static JLabel lblPuntaje;
 	private static JLabel lblVidaJugador;
 	private static Juego juego;
@@ -33,7 +36,7 @@ public class Grafica {
 				try {
 					ventana = new JFrame();
 					ventana.setBackground(Color.BLACK);
-					ventana.setLayout(new FlowLayout());
+					ventana.getContentPane().setLayout(new FlowLayout());
 					ventana.setTitle("Space Adventure");
 					ImageIcon iconoVentana = new ImageIcon(this.getClass().getResource("/img/naveN.png"));
 					ventana.setIconImage(iconoVentana.getImage());
@@ -59,8 +62,30 @@ public class Grafica {
 					        public void mouseExited(MouseEvent me) {}
 					      });
 				
-					ventana.add(panel);
+					ventana.getContentPane().add(panel);
 					ventana.setBounds(0,0,800,660);
+					
+					JMenuBar menuBar = new JMenuBar();
+					ventana.setJMenuBar(menuBar);
+					
+					JButton btnNewButton = new JButton("Reiniciar");
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							System.out.println("accion REINICIAR");
+							ventana.dispose();
+							main(new String[0]);
+						}
+					});
+					menuBar.add(btnNewButton);
+					
+					JButton btnNewButton_1 = new JButton("Salir");
+					btnNewButton_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							System.out.println("accion SALIR");
+							ventana.dispose();
+						}
+					});
+					menuBar.add(btnNewButton_1);
 					ventana.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -95,7 +120,7 @@ public class Grafica {
 		panelEstado.setPreferredSize(new Dimension(800, 600));
 		panelEstado.setLayout(null);
 		
-		ventana.add(panelJuego);
+		ventana.getContentPane().add(panelJuego);
 		
         lblPuntaje.setText("0");
         lblPuntaje.setBounds(700,0,200,60);
@@ -143,7 +168,7 @@ public class Grafica {
 	    texto.setIcon(imagen);
 		contentPane.add (texto);
 		ventana.remove(panelJuego);
-		ventana.add(contentPane);
+		ventana.getContentPane().add(contentPane);
 		ventana.pack();
 		ventana.repaint();
 
@@ -160,7 +185,7 @@ public class Grafica {
 	    texto.setIcon(imagen);
 		contentPane.add (texto);
 		ventana.remove(panelJuego);
-		ventana.add(contentPane);
+		ventana.getContentPane().add(contentPane);
 		ventana.pack();
 		ventana.repaint();
 
@@ -178,7 +203,7 @@ public class Grafica {
 	    texto.setIcon(imagen);
 		contentPane.add (texto);
 		ventana.remove(panelJuego);
-		ventana.add(contentPane);
+		ventana.getContentPane().add(contentPane);
 		ventana.pack();
 		ventana.repaint();
 		try {
@@ -188,7 +213,7 @@ public class Grafica {
 		}
 		ventana.remove(contentPane);
 		contentPane.setVisible(false);
-		ventana.add( panelJuego );
+		ventana.getContentPane().add( panelJuego );
 		ventana.pack();
 		ventana.repaint();
 	}
@@ -202,7 +227,4 @@ public class Grafica {
 	public void cambiarVida(int v) {
 		juego.eliminarVida(vidas[v]);
 	}
-	
-	
-	
 }
