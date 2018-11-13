@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JEditorPane;
-
+import java.io.*;
 public class Grafica{
 	private static JLabel lblPuntaje;
 	private static JLabel lblVidaJugador;
@@ -31,6 +31,8 @@ public class Grafica{
 	private static JLabel[] vidas;
 	static int vidasJugador;
 	private static Grafica grafico;
+	
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -94,6 +96,33 @@ public class Grafica{
 						public void actionPerformed(ActionEvent e) {
 							 String name = JOptionPane.showInputDialog(ventana, "Ingrese su comentario");
 							 System.out.println("ingreso "+name);
+							 
+							 FileWriter fichero = null;
+						        PrintWriter pw = null;
+						        try
+						        {
+						        	fichero = new FileWriter("comentarios.txt");
+						           	pw = new PrintWriter(fichero);
+						 
+						           	System.out.println("Escribiendo en el archivo.txt");
+						           	
+						        	pw.println(name + "\n");
+						 
+						        } catch (Exception ex) {
+						        	ex.printStackTrace();
+						        } finally {
+						        	try {
+						    			// Nuevamente aprovechamos el finally para 
+						        		// asegurarnos que se cierra el fichero.
+						        		if (null != fichero)
+						        			fichero.close();
+						        	} catch (Exception e2) {
+						        		e2.printStackTrace();
+						        	}
+						        }
+							 
+							 
+						        
 						}
 					});
 					menuBar.add(btnComentarios);
