@@ -9,15 +9,15 @@ import Juego.InterfazJuego;
 public class FabricaTriple extends FabricaDisparos {
 	private int cantDisparos;
 
-
 	public FabricaTriple(InterfazJuego juego) {
 		super(juego);
 		cantDisparos = 5;
+		cadenciaDisparo=3;
 	}
 
 	public void crearDisparo(int x, int y) {
 		if (cantDisparos > 0) {
-			Disparo disp1 = new DisparoSimple(new Point(x - 50, y), 10);
+			DisparoJugador disp1 = new DisparoSimple(new Point(x - 50, y), 10);
 			disp1.setComportamiento(new DisparaIzquierda(disp1));
 			Disparo disp2 = new DisparoSimple(new Point(x, y), 10);
 			Disparo disp3 = new DisparoSimple(new Point(x + 50, y), 10);
@@ -30,4 +30,7 @@ public class FabricaTriple extends FabricaDisparos {
 		else
 			juego.getJugador().setFabrica(new FabricaSimple(juego));
 	}
+	
+	
+	
 }

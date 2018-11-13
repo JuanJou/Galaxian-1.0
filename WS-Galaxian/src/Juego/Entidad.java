@@ -17,7 +17,7 @@ public abstract class Entidad{
 	protected Comportamiento comportamiento;
 	protected Colisionador colisionador;
 	protected boolean estaAniquilado;
-	protected InterfazJuego juego;
+
 	
 	protected Entidad(Point pos) {
 		this.pos = pos;
@@ -31,14 +31,13 @@ public abstract class Entidad{
 		return pos;
 	}
 
-	public boolean estaAniquilado(){
-		return estaAniquilado;
-	}
 
 	public void setPos(int x, int y) {
 		pos.setLocation(x, y);
 		getGrafico().setBounds(x,y,ANCHO_SPRITE, ALTO_SPRITE);
 	}
+	
+	
 
 	public int getPuntaje() {
 		return puntaje;
@@ -68,6 +67,10 @@ public abstract class Entidad{
 	public void setComportamiento(Comportamiento c) {
 		comportamiento = c;
 	}
+	
+	public void setColisionador(Colisionador d) {
+		colisionador=d;
+	}
 
 	public void setPorcentajeVida(int v) {
 		porcentajeVida = v;
@@ -77,11 +80,7 @@ public abstract class Entidad{
 		return porcentajeVida;
 	}
 
-	public abstract void aniquilado();
 
-	public abstract void actualizar();
-
-	public abstract void meAtacan(Colisionador c);
 
 	public void atacar(Entidad e) {
 		e.meAtacan(colisionador);
@@ -91,6 +90,10 @@ public abstract class Entidad{
 		comportamiento.activar();
 	}
 	
+	public boolean estaAniquilado(){
+		return estaAniquilado;
+	}
+	
 	public abstract void pausar();
 
 	public abstract void reanudar();
@@ -98,5 +101,13 @@ public abstract class Entidad{
 	public abstract void ponerEscudo();
 	
 	public abstract void sacarEscudo();
+	
+	public abstract void aniquilado();
+
+	public abstract void actualizar();
+
+	public abstract void meAtacan(Colisionador c);
+	
+	
 	
 }

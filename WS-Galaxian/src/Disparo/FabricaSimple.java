@@ -7,11 +7,13 @@ public class FabricaSimple extends FabricaDisparos {
 
 	public FabricaSimple(InterfazJuego juego) {
 		super(juego);
+		cadenciaDisparo=4;
 	}
 
 	public void crearDisparo(int x, int y) {
-		Disparo disp = new DisparoSimple(new Point(x,y), 20);
+		DisparoJugador disp = new DisparoSimple(new Point(x,y), 20);
 		juego.getNivel().agregarEntidadEnLista(disp);
 	}
-
+	
+	
 }

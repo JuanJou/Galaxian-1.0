@@ -4,6 +4,7 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 import Colisionador.Colisionador;
 import Colisionador.ColisionadorDisparoEnemigo;
+import Colisionador.ColisionadorNeutro;
 import Comportamiento.DisparaAbajo;
 
 public final class DisparoEnemigo extends Disparo {
@@ -33,6 +34,14 @@ public final class DisparoEnemigo extends Disparo {
 
 	public void aniquilado() {
 		estaAniquilado = true;
+	}
+	
+	public void ponerEscudo() {
+		colisionador=new ColisionadorNeutro();
+	}
+	
+	public void sacarEscudo() {
+		colisionador=new ColisionadorDisparoEnemigo(this);
 	}
 	
 

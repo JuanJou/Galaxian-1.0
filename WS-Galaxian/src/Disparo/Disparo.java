@@ -5,7 +5,6 @@ import java.awt.Point;
 import Juego.Entidad;
 
 public abstract class Disparo extends Entidad {
-
 	protected int fuerzaImpacto;
 	
 	public Disparo(Point pos, int fuerzaImpacto) {
@@ -19,7 +18,7 @@ public abstract class Disparo extends Entidad {
 		}
 	}
 	
-	public int getFuerzaImpacto() {
+	public int getImpacto() {
 		return fuerzaImpacto;
 	}
 	
@@ -29,9 +28,5 @@ public abstract class Disparo extends Entidad {
 	public void reanudar() {
 	}
 	
-	public void ponerEscudo() {
-	}
 	
-	public void sacarEscudo() {
-	}
 }

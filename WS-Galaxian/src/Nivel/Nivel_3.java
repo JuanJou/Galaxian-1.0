@@ -4,28 +4,30 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import Enemigo.Enemigo;
 import Enemigo.PrototipoEnemigo;
-import Grafica.*;
+import Logica.*;
 import Juego.Juego;
-import Juego.ThreadNivel;
-import Obstaculo.Barricada;
-import Obstaculo.Destruible;
-import Obstaculo.Obstaculo;
+import Obstaculo.*;
 import Premio.Premio;
 
 public class Nivel_3 extends Nivel {
 
 	public Nivel_3(Juego j) {
 		super(j);
-		FONDO = new ImageIcon(this.getClass().getResource("/img/Fondo1.png"));
-		FILAS = 4;
+		Icon i= new ImageIcon(this.getClass().getResource("/img/nivel3.png"));
+		FONDO = new JLabel();
+		FONDO.setIcon(i);
+		FONDO.setBounds(296,92,512,512);
+		FILAS = 3;
 	}
 
 	public void iniciarNivel(Grafica g,ThreadNivel t) {
-		g.pasoNivel("Nivel 3");
+		g.pasoNivel("3");
 		threadNivel=t;
 		generarEnemigos();
 		generarObstaculos();
@@ -33,10 +35,10 @@ public class Nivel_3 extends Nivel {
 
 
 	public Nivel nivelSiguiente(){
-		return null;
+		return new Nivel_4(juego);
 	}
 
-	public void generarEnemigos() {
+	protected void generarEnemigos() {
 		PrototipoEnemigo nuevoEnemigo,prot;
 		Random rnd;
 		LinkedList<PrototipoEnemigo> enemigosGenerados = new LinkedList<PrototipoEnemigo>();
@@ -50,6 +52,7 @@ public class Nivel_3 extends Nivel {
 				nuevoEnemigo = prot.clone();
 				nuevoEnemigo.setPos(posicionHorizontal, posicionVertical);
 				juego.insertarEnLista(nuevoEnemigo);
+				juego.sumarEnemigo();
 				enemigosGenerados.add(nuevoEnemigo);
 				posicionHorizontal += DIST_HORIZONTAL;
 			}
@@ -58,7 +61,7 @@ public class Nivel_3 extends Nivel {
 		generarPremios(enemigosGenerados);
 	}
 	
-	protected void generarPremios(LinkedList<PrototipoEnemigo> enemigosGenerados) {
+	private void generarPremios(LinkedList<PrototipoEnemigo> enemigosGenerados) {
 		Random rnd =new Random();
 		Enemigo e = enemigosGenerados.get(rnd.nextInt(enemigosGenerados.size()));
         Premio miPremio = prototiposPremios.get(rnd.nextInt(prototiposPremios.size()));
@@ -68,10 +71,8 @@ public class Nivel_3 extends Nivel {
         e.asignarPremio(miPremio);
 	}
 
-	public void generarObstaculos() {
-		Obstaculo o = new Destruible(new Point(700, 200));
-		juego.insertarEnLista(o);
-		o = new Barricada(new Point(0, 300));
+	protected void generarObstaculos() {
+		Obstaculo o = new Destruible(new Point(400, 250));
 		juego.insertarEnLista(o);
 	}
 

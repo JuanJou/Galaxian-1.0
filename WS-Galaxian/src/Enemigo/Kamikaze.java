@@ -3,13 +3,12 @@ package Enemigo;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import Colisionador.Colisionador;
-import Colisionador.ColisionadorEnemigo;
-import Colisionador.ColisionadorNeutro;
 import Comportamiento.Buscador;
 import Disparo.FabricaDisparoEnemigo;
 import Juego.InterfazJuego;
 
 public class Kamikaze extends PrototipoEnemigo {
+	
 	public Kamikaze(Point pos, FabricaDisparoEnemigo fabio, InterfazJuego juego) {
 		super(pos, fabio, juego);
 		setGraficos();
@@ -45,16 +44,11 @@ public class Kamikaze extends PrototipoEnemigo {
 		comportamiento = new Buscador(this, juego.getJugador());
 	}
 	
-	public void ponerEscudo() {
-		colisionador=new ColisionadorNeutro();
-	}
 	
-	public void tieneEscudo() {
+	public void tieneEscudo(int n) {
 		aniquilado();
 		juego.getNivel().sacarEscudo();
 	}
 	
-	public void sacarEscudo() {
-		colisionador=new ColisionadorEnemigo();
-	}
+	
 }

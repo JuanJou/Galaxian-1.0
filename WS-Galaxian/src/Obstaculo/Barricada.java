@@ -11,7 +11,7 @@ public class Barricada extends Obstaculo {
 	public Barricada(Point pos) {
 		super(pos);
 		setGraficos();
-		colisionador = new ColisionadorMolestiaJugador();
+		colisionador = new ColisionadorNeutro();
 		comportamiento = new ObstaculoMolesto(this);
 	}
 
@@ -22,5 +22,11 @@ public class Barricada extends Obstaculo {
 
 	public void meAtacan(Colisionador c) {
 		c.atacarObstaculo(this);
+	}
+	
+	public void ponerEscudo() {
+	}
+	
+	public void sacarEscudo() {
 	}
 }

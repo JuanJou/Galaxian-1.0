@@ -5,14 +5,13 @@ import Enemigo.Enemigo;
 import Juego.*;
 import Obstaculo.*;
 import Premio.Premio;
+import Logica.*;
 
 public class ColisionadorJugador extends Colisionador {
 
-	private InterfazJuego juego;
-
-	public ColisionadorJugador(InterfazJuego juego) {
+	public ColisionadorJugador() {
 		fuerzaImpacto = 10;
-		this.juego=juego;
+		
 	}
 
 	public void atacarJugador(Jugador j) {
@@ -20,14 +19,17 @@ public class ColisionadorJugador extends Colisionador {
 
 	public void atacarEnemigo(Enemigo e) {
 		e.setPorcentajeVida(e.getPorcentajeVida() - fuerzaImpacto);
+		Sound.CRASH.play();
 	}
 
 	public void atacarDisparo(Disparo d) {
+		Sound.CRASH.play();
 	}
 
 	public void atacarPremio(Premio p) {
-		p.meActivo(juego);
+		p.meActivo();
 		p.setPorcentajeVida(0);
+		Sound.PO.play();
 	}
 
 	public void atacarObstaculo(Destruible d) {

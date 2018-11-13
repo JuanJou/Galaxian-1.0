@@ -8,6 +8,7 @@ import Colisionador.Colisionador;
 import Comportamiento.*;
 import Disparo.FabricaDisparoEnemigo;
 import Juego.InterfazJuego;
+import Logica.*;
 
 public class Bomba extends PrototipoEnemigo {
 
@@ -37,8 +38,9 @@ public class Bomba extends PrototipoEnemigo {
 			// DISPARO RANDOM
 			if (!pausado) {
 				Random rnd = new Random();
-				if (rnd.nextInt(100) == 0)
+				if (rnd.nextInt(100) == 0) {
 					disparar();
+					Sound.COL.play();}
 			}
 		}
 		else
@@ -52,6 +54,10 @@ public class Bomba extends PrototipoEnemigo {
 	public void reanudar() {
 		comportamiento = new Standard(this);
 		pausado = false;
+	}
+	
+	public void tieneEscudo(int n) {
+		setPorcentajeVida(getPorcentajeVida() - n);
 	}
 	
 }

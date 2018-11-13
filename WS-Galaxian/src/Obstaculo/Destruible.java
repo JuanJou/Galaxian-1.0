@@ -22,4 +22,12 @@ public class Destruible extends Obstaculo {
 	public void meAtacan(Colisionador c) {
 		c.atacarObstaculo(this);
 	}
+	
+	public void ponerEscudo() {
+		colisionador=new ColisionadorNeutro();
+	}
+	
+	public void sacarEscudo() {
+		colisionador=new ColisionadorDestruible();
+	}
 }

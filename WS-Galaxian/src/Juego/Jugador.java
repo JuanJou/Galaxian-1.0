@@ -6,12 +6,17 @@ import Colisionador.*;
 import javax.swing.ImageIcon;
 import Colisionador.Colisionador;
 import Disparo.*;
+import Logica.Sound;
 
 public class Jugador extends Entidad {
 	private int cantVidas;
 	private Juego juego;
 	private FabricaDisparos fabricaDisparo;
 	private int cantDisparoSuper;
+	private boolean estaDisparando;
+	private int contador;
+	private boolean tengoEscudo;
+	private boolean pasoNivel;
 
 	public static final int DERECHA = 1, IZQUIERDA = -1, STOPDER = 2, STOPIZQ = -2;
 
@@ -19,11 +24,30 @@ public class Jugador extends Entidad {
 		super(pos);
 		setGraficos();
 		this.juego = juego;
-		colisionador = new ColisionadorJugador(juego);
+		colisionador = new ColisionadorJugador();
 		fabricaDisparo = new FabricaSimple(juego);
 		cantVidas = 3;
+		estaAniquilado=false;
+		estaDisparando=false;
+		contador=fabricaDisparo.getCadencia();
+		tengoEscudo=false;
+		pasoNivel=false;
 	}
-
+	
+	public boolean pasoNivel() {
+		return pasoNivel;
+	}
+	public void pase(boolean b) {
+		pasoNivel=b;
+	}
+	
+	public void setEscudo(boolean e) {
+		tengoEscudo=e;
+	}
+	
+	public boolean getEscudo() {
+		return tengoEscudo;
+	}
 	protected void setGraficos() {
 		this.libreriaImagenes[0] = new ImageIcon(this.getClass().getResource("/img/naveN.png"));
 		this.libreriaImagenes[1] = new ImageIcon(this.getClass().getResource("/img/naveNE.png"));
@@ -66,6 +90,7 @@ public class Jugador extends Entidad {
 	}
 
 	public void aniquilado() {
+		estaAniquilado=true;
 		juego.gameOver();
 	}
 
@@ -111,6 +136,14 @@ public class Jugador extends Entidad {
 	}
 
 	public void actualizar() {
+		if(estaDisparando==true && contador==fabricaDisparo.getCadencia()) {
+			disparar();
+			Sound.SHOOT.play();
+		}
+		contador--;
+		if (contador==0)
+			contador=fabricaDisparo.getCadencia();
+		
 	}
 
 	public void pausar() {
@@ -119,17 +152,23 @@ public class Jugador extends Entidad {
 	public void reanudar() {
 	}
 
-	public Juego getJuego() {
-		return juego;
-	}
-
 	public void ponerEscudo() {
 		cambiarGrafico(1);
-		colisionador = new ColisionadorEscudo(juego);
+		colisionador = new ColisionadorEscudo();
+		tengoEscudo=true;
 	}
 
 	public void sacarEscudo() {
 		cambiarGrafico(0);
-		colisionador = new ColisionadorJugador(juego);
+		colisionador = new ColisionadorJugador();
+		tengoEscudo=false;
+	}
+	
+	public boolean estaDisparando() {
+		return estaDisparando;
+	}
+	
+	public void estoyDisparando(boolean b) {
+		estaDisparando=b;
 	}
 }

@@ -1,7 +1,6 @@
 package Obstaculo;
 
 import java.awt.Point;
-import Colisionador.*;
 import Comportamiento.*;
 import Juego.*;
 
@@ -32,12 +31,7 @@ public abstract class Obstaculo extends Entidad {
 
 	}
 	
-	public void ponerEscudo() {
-	}
 	
-	public void sacarEscudo() {
-	}
 	
-	public abstract void meAtacan(Colisionador c) ;
 	
 }

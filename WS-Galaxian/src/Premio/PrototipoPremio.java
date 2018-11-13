@@ -2,13 +2,15 @@ package Premio;
 
 import java.awt.Point;
 
+import Juego.InterfazJuego;
+
 public abstract class PrototipoPremio extends Premio{
-
-	public PrototipoPremio(Point pos){
+	protected InterfazJuego game;
+	
+	public PrototipoPremio(Point pos,InterfazJuego g){
 		super(pos);
+		game=g;
 	}
 
-	public PrototipoPremio clone() {
-		return this.clone();
-	}
+	public abstract PrototipoPremio clone();
 }

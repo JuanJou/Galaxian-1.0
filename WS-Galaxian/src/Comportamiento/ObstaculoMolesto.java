@@ -5,10 +5,10 @@ import Juego.Entidad;
 public class ObstaculoMolesto extends Comportamiento {
 
 	private Entidad e;
-	boolean derechaArriba;
-	boolean derechaAbajo;
-	boolean izquierdaArriba;
-	boolean izquierdaAbajo;
+	private boolean derechaArriba;
+	private boolean derechaAbajo;
+	private boolean izquierdaArriba;
+	private boolean izquierdaAbajo;
 
 	public ObstaculoMolesto(Entidad e) {
 		this.e = e;

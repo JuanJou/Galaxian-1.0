@@ -1,4 +1,4 @@
-package Juego;
+package Logica;
 
 import Nivel.Nivel;
 

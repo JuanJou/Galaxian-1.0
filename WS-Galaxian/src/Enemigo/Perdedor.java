@@ -9,6 +9,7 @@ import Comportamiento.Buscador;
 import Comportamiento.Standard;
 import Disparo.FabricaDisparoEnemigo;
 import Juego.InterfazJuego;
+import Logica.*;
 
 public class Perdedor extends PrototipoEnemigo {
 
@@ -43,6 +44,7 @@ public class Perdedor extends PrototipoEnemigo {
 					Random rnd = new Random();
 					if (rnd.nextInt(100) == 0) {
 						disparar();
+						Sound.COL.play();
 					}
 				}
 		} else
@@ -58,7 +60,10 @@ public class Perdedor extends PrototipoEnemigo {
 		pausado = false;
 	}
 	
-	public void tieneEscudo() {
+	public void tieneEscudo(int n) {
+		setPorcentajeVida(getPorcentajeVida() - n);
 	}
+	
+
 
 }

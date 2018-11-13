@@ -3,8 +3,8 @@ package Enemigo;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import Colisionador.Colisionador;
-import Comportamiento.Bobo;
 import Comportamiento.Buscador;
+import Comportamiento.Standard;
 import Disparo.FabricaDisparoEnemigo;
 import Juego.InterfazJuego;
 
@@ -34,7 +34,7 @@ public class Debil extends PrototipoEnemigo {
 		if (porcentajeVida > 0) {
 			moverme();
 			if (porcentajeVida <= 50 && !pausado) {
-				comportamiento = new Bobo(this);
+				comportamiento = new Standard(this);
 			}
 		} else
 			aniquilado();
@@ -48,6 +48,7 @@ public class Debil extends PrototipoEnemigo {
 		pausado = false;
 	}
 	
-	public void tieneEscudo() {
+	public void tieneEscudo(int n) {
+		setPorcentajeVida(getPorcentajeVida() - n);
 	}
 }

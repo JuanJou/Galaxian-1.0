@@ -2,6 +2,8 @@ package Enemigo;
 
 import java.awt.Point;
 
+import Colisionador.ColisionadorEnemigo;
+import Colisionador.ColisionadorNeutro;
 import Comportamiento.Nulo;
 import Disparo.FabricaDisparoEnemigo;
 import Juego.InterfazJuego;
@@ -20,17 +22,7 @@ public abstract class PrototipoEnemigo extends Enemigo {
 		pausado = false;
 	}
 	
-	public PrototipoEnemigo clone() {
-		return this.clone();
-	}
-	
-	public void setJuego(InterfazJuego juego) {
-		this.juego = juego;
-	}
-	
-	public void setFabricaDisparos(FabricaDisparoEnemigo fad) {
-		this.fabricaDisparoEnemigo = fad;
-	}
+	public abstract PrototipoEnemigo clone(); 
 	
 	public abstract void disparar();
 	
@@ -38,5 +30,14 @@ public abstract class PrototipoEnemigo extends Enemigo {
 		comportamiento = new Nulo();
 		pausado = true;
 	}
+	
+	public void sacarEscudo() {
+		colisionador=new ColisionadorEnemigo();
+		fabricaDisparoEnemigo.setEscudo(false);
+	}
+	public void ponerEscudo() {
+		colisionador=new ColisionadorNeutro();
+		fabricaDisparoEnemigo.setEscudo(true);
+	};
 	
 }

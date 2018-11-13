@@ -11,13 +11,14 @@ public class ColisionadorDisparoEnemigo extends Colisionador {
 	private DisparoEnemigo disparo;
 
 	public ColisionadorDisparoEnemigo(DisparoEnemigo d) {
-		fuerzaImpacto = d.getFuerzaImpacto();
+		fuerzaImpacto = d.getImpacto();
 		disparo = d;
 	}
 
 	public void atacarJugador(Jugador j) {
 		j.restarPorcentajeVida(fuerzaImpacto);
 		disparo.cambiarGrafico(1);
+		
 		disparo.aniquilado();
 	}
 
@@ -32,10 +33,10 @@ public class ColisionadorDisparoEnemigo extends Colisionador {
 	
 	public void atacarObstaculo(Destruible d) {
 		d.setPorcentajeVida(d.getPorcentajeVida() - fuerzaImpacto);
-		if (d.getPorcentajeVida() <= 0) {
-			disparo.cambiarGrafico(1);
-			disparo.aniquilado();
-		}
+		disparo.cambiarGrafico(1);
+		
+		disparo.aniquilado();
+		
 	}
 	
 	public void atacarObstaculo(Barricada b) {};

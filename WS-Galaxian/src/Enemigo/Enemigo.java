@@ -31,19 +31,14 @@ public abstract class Enemigo extends Entidad {
 
 	public void aniquilado() {
 		estaAniquilado = true;
+		nivel.restarEnemigo();
 		if (entregaPremio)
 			entregarPremio();
 	}
 
-	public abstract void actualizar();
+	public abstract void tieneEscudo(int fuerzaImpacto) ;
+	
+	
 
-	public void tieneEscudo(int fuerzaImpacto) {
-		porcentajeVida = porcentajeVida - fuerzaImpacto;
-	}
-
-	public void sacarEscudo() {
-	}
-
-	public void ponerEscudo() {
-	}
+	
 }

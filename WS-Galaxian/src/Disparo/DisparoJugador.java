@@ -11,5 +11,11 @@ public abstract class DisparoJugador extends Disparo {
 		colisionador = new ColisionadorDisparo(this);
 		comportamiento=new DisparaArriba(this);
 	}
+	
+	public void ponerEscudo() {
+	}
+	
+	public void sacarEscudo() {}
+
 
 }

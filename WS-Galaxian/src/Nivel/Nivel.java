@@ -2,17 +2,15 @@ package Nivel;
 
 import java.awt.Point;
 import java.util.LinkedList;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Disparo.FabricaDisparoEnemigo;
 import Premio.*;
 import Enemigo.*;
-import Grafica.*;
 import Juego.Entidad;
 import Juego.Juego;
-import Juego.ThreadJugador;
-import Juego.ThreadNivel;
+import Logica.*;
+
 
 
 public abstract class Nivel implements InterfazNivel {
@@ -23,11 +21,10 @@ public abstract class Nivel implements InterfazNivel {
 	protected static final int DIST_HORIZONTAL = 120;
 	protected static final int DIST_VERTICAL = 64;
 	protected int FILAS;
-	protected ImageIcon FONDO;
+	protected JLabel FONDO;
 	protected LinkedList<PrototipoEnemigo> prototiposEnemigos;
 	protected LinkedList<PrototipoPremio> prototiposPremios;
 	protected ThreadNivel threadNivel;
-	protected ThreadJugador threadJugador;
 	protected Juego juego;
 	
 
@@ -40,15 +37,16 @@ public abstract class Nivel implements InterfazNivel {
 	
 	}
 	
-	public JLabel getFondoNivel() {
-		JLabel fondo = new JLabel(FONDO);
-		fondo.setBounds(0, 0, ANCHURA_JUEGO, ALTURA_JUEGO);
-		return fondo;
-	}
+	
 
 	public abstract void iniciarNivel(Grafica g,ThreadNivel t);
 	
 	public abstract Nivel nivelSiguiente();
+	
+	public JLabel getFondo() {
+		return FONDO;
+	}
+	
 
 
 	protected void generarPrototiposEnemigos() {
@@ -67,26 +65,26 @@ public abstract class Nivel implements InterfazNivel {
 	
 	protected void generarPrototiposPremios(){
         Point inicial = new Point(0, 0);
-        PrototipoPremio detenerTiempo = new DetenerTiempo(inicial);
+        PrototipoPremio detenerTiempo = new DetenerTiempo(inicial,juego);
         prototiposPremios.add(detenerTiempo);
-        PrototipoPremio vida = new Vida(inicial);
+        PrototipoPremio vida = new Vida(inicial,juego);
         prototiposPremios.add(vida);
-        PrototipoPremio superDisparo = new SuperDisparo(inicial);
+        PrototipoPremio superDisparo = new SuperDisparo(inicial,juego);
         prototiposPremios.add(superDisparo); 
-        PrototipoPremio escudo=new Escudo(inicial);
+        PrototipoPremio escudo=new Escudo(inicial,juego);
         prototiposPremios.add(escudo);
-        PrototipoPremio mejora=new MejoraArmaDoble(inicial);
+        PrototipoPremio mejora=new MejoraArmaDoble(inicial,juego);
         prototiposPremios.add(mejora);
-        mejora=new MejoraArmaTriple(inicial);
+        mejora=new MejoraArmaTriple(inicial,juego);
         prototiposPremios.add(mejora);
         
         
     }
 
 	
-	public abstract void generarEnemigos();
+	protected abstract void generarEnemigos();
 
-	public abstract void generarObstaculos();
+	protected abstract void generarObstaculos();
 	
 	public void agregarEntidadEnLista(Entidad e) {
 		juego.insertarEnLista(e);
@@ -114,5 +112,9 @@ public abstract class Nivel implements InterfazNivel {
 	
 	public void sacarEscudo() {
 		juego.sacarEscudo();
+	}
+	
+	public void restarEnemigo() {
+		juego.restarEnemigo();
 	}
 }

@@ -30,7 +30,7 @@ public abstract class Premio extends Entidad {
 			aniquilado();
 	}
 	
-	public abstract void meActivo(InterfazJuego j);
+	public abstract void meActivo();
 	
 	public void pausar() {
 	}
@@ -43,5 +43,7 @@ public abstract class Premio extends Entidad {
 	
 	public void sacarEscudo() {
 	}
+	
+	
 	
 }

@@ -10,15 +10,19 @@ public class FabricaSuper extends FabricaDisparos {
 	public FabricaSuper(InterfazJuego juego) {
 		super(juego);
 		cantDisparos = 10;
+		cadenciaDisparo=5;
 	}
 
 	public void crearDisparo(int x, int y) {
 		if (cantDisparos > 0) {
-			Disparo disp2 = new DisparoSuper(new Point(x, y), 80);
+			DisparoJugador disp2 = new DisparoSuper(new Point(x, y), 80);
 			juego.getNivel().agregarEntidadEnLista(disp2);
 			cantDisparos--;
 		}
 		else
 			juego.getJugador().setFabrica(new FabricaSimple(juego));
 	}
+	
+	
+	
 }

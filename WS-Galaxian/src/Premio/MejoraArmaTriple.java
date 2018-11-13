@@ -8,8 +8,8 @@ import Juego.*;
 
 public class MejoraArmaTriple extends PrototipoPremio {
 
-	public MejoraArmaTriple(Point pos) {
-		super(pos);
+	public MejoraArmaTriple(Point pos,InterfazJuego g) {
+		super(pos,g);
 		setGraficos();
 	}
 
@@ -18,12 +18,12 @@ public class MejoraArmaTriple extends PrototipoPremio {
 	}
 	
 	public PrototipoPremio clone() {
-		MejoraArmaTriple clon = new MejoraArmaTriple(new Point(this.pos.x, this.pos.y));
+		MejoraArmaTriple clon = new MejoraArmaTriple(new Point(this.pos.x, this.pos.y),game);
 		return clon;
 	}
 
-	public void meActivo(InterfazJuego juego) {
-		juego.getJugador().setFabrica(new FabricaTriple(juego));
+	public void meActivo() {
+		game.getJugador().setFabrica(new FabricaTriple(game));
 	}
 
 }

@@ -3,7 +3,7 @@ package Enemigo;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import Colisionador.Colisionador;
-import Comportamiento.Bobo;
+import Comportamiento.Standard;
 import Disparo.FabricaDisparoEnemigo;
 import Juego.InterfazJuego;
 
@@ -12,7 +12,7 @@ public class Distraido extends PrototipoEnemigo {
 	public Distraido(Point pos, FabricaDisparoEnemigo fabio, InterfazJuego juego) {
 		super(pos, fabio, juego);
 		setGraficos();
-		comportamiento = new Bobo(this);
+		comportamiento = new Standard(this);
 	}
 
 	protected void setGraficos() {
@@ -40,9 +40,10 @@ public class Distraido extends PrototipoEnemigo {
 	}
 
 	public void reanudar() {
-		comportamiento = new Bobo(this);
+		comportamiento = new Standard(this);
 	}
 
-	public void tieneEscudo() {
+	public void tieneEscudo(int n) {
+		setPorcentajeVida(getPorcentajeVida() - n);
 	}
 }

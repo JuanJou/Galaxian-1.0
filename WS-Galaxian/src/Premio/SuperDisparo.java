@@ -7,8 +7,8 @@ import Juego.*;
 
 public class SuperDisparo extends PrototipoPremio {
 
-	public SuperDisparo(Point pos) {
-		super(pos);
+	public SuperDisparo(Point pos,InterfazJuego g) {
+		super(pos,g);
 		setGraficos();
 	}
 
@@ -17,11 +17,11 @@ public class SuperDisparo extends PrototipoPremio {
 	}
 
 	public PrototipoPremio clone() {
-		SuperDisparo clon = new SuperDisparo(new Point(this.pos.x, this.pos.y));
+		SuperDisparo clon = new SuperDisparo(new Point(this.pos.x, this.pos.y),game);
 		return clon;
 	}
-	public void meActivo(InterfazJuego juego) {
-		juego.getJugador().setFabrica(new FabricaSuper(juego));
+	public void meActivo() {
+		game.getJugador().setFabrica(new FabricaSuper(game));
 	}
 
 	

@@ -6,8 +6,8 @@ import Juego.InterfazJuego;
 
 public class Escudo extends PrototipoPremio {
 
-	public Escudo(Point pos) {
-		super(pos);
+	public Escudo(Point pos,InterfazJuego g) {
+		super(pos,g);
 		setGraficos();
 	}
 	
@@ -16,12 +16,12 @@ public class Escudo extends PrototipoPremio {
 	}
 
 	public PrototipoPremio clone() {
-		Escudo clon = new Escudo(new Point(this.pos.x, this.pos.y));
+		Escudo clon = new Escudo(new Point(this.pos.x, this.pos.y),game);
 		return clon;
 	}
 	
-	public void meActivo(InterfazJuego j) {
-		j.getNivel().ponerEscudo();
+	public void meActivo() {
+		game.getNivel().ponerEscudo();
 	}
 
 }

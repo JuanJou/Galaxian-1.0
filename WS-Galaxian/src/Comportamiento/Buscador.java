@@ -25,7 +25,7 @@ public class Buscador extends Comportamiento {
 			else
 				seguidor.setPos(seguidor.getPos().x, seguidor.getPos().y+velocidad);
 		
-		if (cordYSeguidor > 500) {
+		if (cordYSeguidor > 550) {
 			seguidor.setPos(seguidor.getPos().x, 0);
 		}
 	}
