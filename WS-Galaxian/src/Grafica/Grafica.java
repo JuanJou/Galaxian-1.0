@@ -101,19 +101,18 @@ public class Grafica{
 					JButton btnComentarios = new JButton("Comentarios");
 					btnComentarios.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							 String name = JOptionPane.showInputDialog(ventana, "Ingrese su comentario");
-							 System.out.println("ingreso "+name);
+							 String comentario = JOptionPane.showInputDialog(ventana, "Ingrese su comentario");
 							 
 							 FileWriter fichero = null;
-						        PrintWriter pw = null;
+						     PrintWriter pw = null;
 						        try
 						        {
-						        	fichero = new FileWriter("comentarios.txt");
+						        	fichero = new FileWriter("comentarios.txt",true);
 						           	pw = new PrintWriter(fichero);
 						 
 						           	System.out.println("Escribiendo en el archivo.txt");
 						           	
-						        	pw.println(name + "\n");
+						        	pw.println(UsuarioActual.user+"-"+comentario);
 						 
 						        } catch (Exception ex) {
 						        	ex.printStackTrace();
