@@ -16,6 +16,8 @@ import Juego.*;
 import javax.swing.JSplitPane;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JEditorPane;
 
 public class Grafica{
 	private static JLabel lblPuntaje;
@@ -86,6 +88,15 @@ public class Grafica{
 						}
 					});
 					menuBar.add(btnNewButton_1);
+					
+					JButton btnComentarios = new JButton("Comentarios");
+					btnComentarios.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							 String name = JOptionPane.showInputDialog(ventana, "Ingrese su comentario");
+							 System.out.println("ingreso "+name);
+						}
+					});
+					menuBar.add(btnComentarios);
 					ventana.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
