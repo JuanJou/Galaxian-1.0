@@ -36,6 +36,8 @@ public class LogInWindow {
 		logInFrame=new JFrame("Iniciar sesion");
 		logInFrame.setVisible(true);
 		logInFrame.getContentPane().setLayout(null);
+		logInFrame.setBounds(0, 0, 600, 400);
+		logInFrame.getContentPane().setBounds(0,0,600,400);
 		
 		userField = new JTextField();
 		userField.setBounds(97, 61, 236, 39);

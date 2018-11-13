@@ -10,6 +10,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
+import javax.swing.FocusManager;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -132,6 +135,51 @@ public class Grafica{
 						}
 					});
 					menuBar.add(btnComentarios);
+					
+					JButton btnVerComentarios = new JButton("Ver comentarios");
+					if (UsuarioActual.user.equals("admin"))
+						menuBar.add(btnVerComentarios);
+					
+					btnVerComentarios.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							FileReader fileReader;
+							try {
+								fileReader=new FileReader(new File("comentarios.txt"));
+								BufferedReader bufferReader=new BufferedReader(fileReader);
+								mostrarComentarios(bufferReader);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						}
+
+						private void mostrarComentarios(BufferedReader bufferReader) throws IOException {
+							JFrame comments=new JFrame("Comentarios");
+							comments.setLayout(new GridLayout(0,2));
+							comments.setVisible(true);
+							String linea;
+							while((linea=bufferReader.readLine())!=null) {
+								comments.add(new JLabel(linea.split("-")[0]));
+								comments.add(new JLabel(linea.split("-")[1]));
+							}
+							
+						}
+						
+					});
+					
+					JButton btnCerrarSesion = new JButton("Cerrar sesion");
+					btnCerrarSesion.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FocusManager.getCurrentManager().getActiveWindow().dispose();
+							LogInWindow.main(args);
+						}
+					});
+					menuBar.add(btnCerrarSesion);
+					
+					
 					ventana.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
